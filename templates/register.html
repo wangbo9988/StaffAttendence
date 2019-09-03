@@ -25,20 +25,20 @@
 <head>
     <meta charset="utf-8">
     <title>
-        考勤系统-登陆
+        考勤系统-注册
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- bootstrap css -->
 
-    <link href="static/icomoon/style.css" rel="stylesheet">
-    <link href="static/css/main.css" rel="stylesheet">
+    <link href="{% static "/icomoon/style.css" %}" rel="stylesheet">
+    <link href="{% static "/css/main.css" %}" rel="stylesheet">
     <!-- Important. For Theming change primary-color variable in main.css  -->
-    <link href="static/css/alertify.core.css" rel="stylesheet" id="toggleCSS">
+    <link href="{% static "/css/alertify.core.css" %}" rel="stylesheet" id="toggleCSS">
     <!-- Important. For Theming change primary-color variable in main.css  -->
     <!--[if lte IE 7]>
-    <script src="static/css/icomoon-font/lte-ie7.js">
+    <script type="text/javascript" src="{% static "/css/icomoon-font/lte-ie7.js"%}">
     </script>
     <![endif]-->
 
@@ -47,7 +47,7 @@
 <!-- 头部状态栏 start -->
 <header>
     <a href="#" class="logo">
-        <img src="static/img/logo.png" alt="Logo"/>
+        <img src="{% static "/img/logo.png" %}" alt="Logo"/>
     </a>
 </header>
 <!-- 头部状态栏 end -->
@@ -57,10 +57,10 @@
         <!--头部副导航栏-->
         <div class="sub-nav">
             <ul>
-                <li><a href="/" class="heading">登陆</a></li>
+                <li><a href="/toRegister/" class="heading">注册</a></li>
                 <li>
-                    <a href="/toRegister/">
-                        注册
+                    <a href="/">
+                        登陆
                     </a>
                 </li>
             </ul>
@@ -89,10 +89,9 @@
                                             <div class="header">
                                                 <div class="row-fluid">
                                                     <div class="span12">
-                                                        <h3>用户登录<img src="static/img/logo1.png" alt="Logo"
+                                                        <h3>用户注册<img src="{% static "/img/logo1.png" %}" alt="Logo"
                                                                      class="pull-right">
                                                         </h3>
-                                                        <p>登陆成功后方可访问后台页面</p>
                                                     </div>
                                                 </div>
 
@@ -110,11 +109,18 @@
                                                                placeholder="请输入密码" required="required" type="password">
                                                     </div>
                                                 </div>
+                                                <div class="row-fluid">
+                                                    <div class="span12">
+                                                        <input class="span12 password" name="sec_password"
+                                                               placeholder="再次输入密码" required="required" type="password">
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="actions">
                                                 <input class="btn btn-danger" name="Login" type="button"
-                                                       onclick="login ()" value="登陆"
+                                                       onclick="login ()" value="注册"
                                                        id="loginBtn">
+                                                <a class="link" href="/">登陆</a>
                                                 <div class="clearfix"></div>
                                             </div>
                                         </form>
@@ -143,11 +149,11 @@
 <!-- 底部footer end -->
 
 
-<script src="static/js/jquery.min.js"></script>
-<script src="static/js/bootstrap.js"></script>
-<script type="text/javascript" src="static/js/alertify.min.js"></script>
+<script src="{% static "/js/jquery.min.js" %}"></script>
+<script src="{% static "/js/bootstrap.js" %}"></script>
+<script type="text/javascript" src="{% static "/js/alertify.min.js" %}"></script>
 //主JS代码
-<script type="text/javascript" src="static/js/main.js"></script>
+<script type="text/javascript" src="{% static "/js/main.js" %}"></script>
 <script type="text/javascript">
     //Tooltip
     $('a').tooltip('hide');
@@ -159,7 +165,7 @@
     })
     //Alertify JS插件初始化
     reset = function () {
-        $("toggleCSS").href = "css/alertify.core.css";
+        $("toggleCSS").href = "{% static "css/alertify.core.css"%}";
         alertify.set({
             labels: {
                 cancel: "确认",
@@ -175,31 +181,37 @@
     function login() {
         //获取表单数据
         var loginFormJson = $('#loginForm').serializeArray();
-        //构造请求参数
-        var loginSubmitJson = {
-            username: loginFormJson[0].value,
-            password: loginFormJson[1].value
-        };
-        var data = JSON.stringify(loginSubmitJson);
-        $.ajax({
-            catch: false,
-            type: "POST",
-            url: "/login/",
-            data: data,
-            async: false,
-            success: function (data) {
-                console.log(data)
-                if (data.status == "0") {
-                    //登陆失败
-                    message('error', '登陆失败');
-                    return false;
-                } else {
-                    //登陆成功
-                    window.location.href = '/toIndex/';
-
+        var sec_passwword = loginFormJson[2].value
+        if (sec_passwword != loginFormJson[1].value) {
+            //两次密码错误失败
+            message('error', '两次输入的密码不匹配');
+            return false;
+        } else {
+            //构造请求参数
+            var loginSubmitJson = {
+                username: loginFormJson[0].value,
+                password: loginFormJson[1].value
+            };
+            var loginSubmitJson = JSON.stringify(loginSubmitJson)
+            $.ajax({
+                catch: false,
+                type: "POST",
+                url: "/Register/",
+                data: loginSubmitJson,
+                async: false,
+                success: function (data) {
+                    if (data.status == '0') {
+                        //登陆失败
+                        message('error', '注册失败');
+                        return false;
+                    } else {
+                        //登陆成功
+                        window.location.href = '/';
+                    }
                 }
-            }
-        })
+            })
+
+        }
 
     };
 </script>

@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <!--[if lt IE 7]>
 
@@ -31,8 +32,8 @@
     <meta name="author" content="">
     <!-- bootstrap css -->
 
-    <link href="../static/icomoon/style.css" rel="stylesheet">
-    <link href="../static/css/main.css" rel="stylesheet">
+    <link href="{% static "/icomoon/style.css" %}" rel="stylesheet">
+    <link href="{% static "/css/main.css" %}" rel="stylesheet">
     <!-- Important. For Theming change primary-color variable in main.css  -->
     <link href="../static/css/alertify.core.css" rel="stylesheet" id="toggleCSS">
     <!--[if lte IE 7]>
@@ -62,7 +63,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/LoginOut/">
                     注销账户
                 </a>
             </li>
@@ -409,6 +410,7 @@
             buttonFocus: "ok"
         });
     };
+
     //删除按钮点击事件
     function del(obj) {
         reset();

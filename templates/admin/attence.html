@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <!--[if lt IE 7]>
 
@@ -31,12 +32,12 @@
     <meta name="author" content="">
     <!-- bootstrap css -->
 
-    <link href="../static/icomoon/style.css" rel="stylesheet">
-    <link href="../static/css/main.css" rel="stylesheet">
+    <link href="{% static "/icomoon/style.css" %}" rel="stylesheet">
+    <link href="{% static "/css/main.css" %}" rel="stylesheet">
     <!-- Important. For Theming change primary-color variable in main.css  -->
-    <link href="../static/css/alertify.core.css" rel="stylesheet" id="toggleCSS">
+    <link href="{% static"/css/alertify.core.css" %}" rel="stylesheet" id="toggleCSS">
     <!--[if lte IE 7]>
-    <script src="static/css/icomoon-font/lte-ie7.js">
+    <script src="{% static "/css/icomoon-font/lte-ie7.js"%}">
     </script>
     <![endif]-->
 
@@ -45,7 +46,7 @@
 <!-- 头部状态栏 start -->
 <header>
     <a href="#" class="logo">
-        <img src="../static/img/logo.png" alt="Logo"/>
+        <img src="{% static "/img/logo.png" %}" alt="Logo"/>
     </a>
     <div class="btn-group">
         <button class="btn btn-primary">
@@ -57,12 +58,7 @@
         </button>
         <ul class="dropdown-menu pull-right">
             <li>
-                <a href="#myModal" role="button" data-toggle="modal">
-                    修改密码
-                </a>
-            </li>
-            <li>
-                <a href="#">
+                <a href="/LoginOut/">
                     注销账户
                 </a>
             </li>
@@ -149,7 +145,7 @@
                     </div>
 
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -219,26 +215,26 @@
 <!-- 底部footer start -->
 <footer>
     <p>
-        &copy; 雷格SS Copyright 2018 Powered by Bootstrap! F1.0 备：沪ICP备41749849号-3
+        &copy; XXX
     </p>
 </footer>
 <!-- 底部footer end -->
 
 
-<script src="../static/js/jquery.min.js">
+<script src="{% static "/js/jquery.min.js" %}">
 </script>
-<script src="../static/js/bootstrap.js">
+<script src="{% static "/js/bootstrap.js" %}">
 </script>
-<script src="../static/js/echarts.js">
+<script src="{% static "/js/echarts.js" %}">
 </script>
-<script type="text/javascript" src="../static/js/alertify.min.js">
+<script type="text/javascript" src="{% static "/js/alertify.min.js" %}">
 </script>
-<script src="../static/js/jquery.scrollUp.js">
+<script src="{% static "/js/jquery.scrollUp.js" %}">
 </script>
-<script src="../static/js/jquery.dataTables.js">
+<script src="{% static "/js/jquery.dataTables.js" %}">
 </script>
 //主JS代码
-<script type="text/javascript" src="../static/js/main.js">
+<script type="text/javascript" src="{% static "/js/main.js" %}">
 </script>
 <script>
     /*
@@ -275,12 +271,12 @@
         legend: {
             orient: 'vertical',
             x: 'left',
-            data:['出勤人数','请假人数','缺勤人数','补卡人数']
+            data: ['出勤人数', '请假人数', '缺勤人数', '补卡人数']
         },
         series: [
             {
-                name:'访问来源',
-                type:'pie',
+                name: '访问来源',
+                type: 'pie',
                 radius: ['50%', '70%'],
                 avoidLabelOverlap: false,
                 label: {
@@ -301,11 +297,11 @@
                         show: false
                     }
                 },
-                data:[
-                    {value:20, name:'出勤人数'},
-                    {value:3, name:'请假人数'},
-                    {value:2, name:'缺勤人数'},
-                    {value:5, name:'补卡人数'}
+                data: [
+                    {value: 20, name: '出勤人数'},
+                    {value: 3, name: '请假人数'},
+                    {value: 2, name: '缺勤人数'},
+                    {value: 5, name: '补卡人数'}
                 ]
             }
         ]
@@ -324,10 +320,10 @@
         },
         tooltip: {},
         legend: {
-            data:['出勤人数']
+            data: ['出勤人数']
         },
         xAxis: {
-            data: ["星期一","星期二","星期三","星期四","星期五","星期六"]
+            data: ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六"]
         },
         yAxis: {},
         series: [{
@@ -353,8 +349,6 @@
      *   员工手机号：phone
      *   员工所在部门：department
      *   员工职位：position
-     *   员工班次：shift_id
-     *   员工等级：level
      * */
     function getEmployee_on() {
         $.ajax({

@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <!--[if lt IE 7]>
 
@@ -32,7 +33,8 @@
     <!-- bootstrap css -->
 
     <link href="../static/icomoon/style.css" rel="stylesheet">
-    <link href="../static/css/main.css" rel="stylesheet"> <!-- Important. For Theming change primary-color variable in main.css  -->
+    <link href="../static/css/main.css" rel="stylesheet">
+    <!-- Important. For Theming change primary-color variable in main.css  -->
     <link href="../static/css/alertify.core.css" rel="stylesheet" id="toggleCSS">
     <!--[if lte IE 7]>
     <script src="static/css/icomoon-font/lte-ie7.js">
@@ -56,12 +58,7 @@
         </button>
         <ul class="dropdown-menu pull-right">
             <li>
-                <a href="#myModal" role="button" data-toggle="modal">
-                    修改密码
-                </a>
-            </li>
-            <li>
-                <a href="#">
+                <a href="/LoginOut/">
                     注销账户
                 </a>
             </li>
@@ -76,59 +73,31 @@
         <div class="top-nav">
             <ul>
                 <li>
-                    <a href="punch.html">
+                    <a href="/toIndex/">
                         <div class="fs1" aria-hidden="true" data-icon="&#xe0a0;"></div>
                         打卡测试
                     </a>
                 </li>
                 <li>
-                    <a href="punch.html" class="selected">
-                        <div class="fs1" aria-hidden="true" data-icon="&#xe0b8;"></div>
+                    <a href="/toPersonalInfor/">
+                        <div class="fs1" aria-hidden="true" data-icon="&#xe072;"></div>
+                        个人信息
+                    </a>
+                </li>
+                <li>
+                    <a href="/toApplyLeave/" class="selected">
+                        <div class="fs1" aria-hidden="true" data-icon="&#xe0e4;"></div>
                         申请休假
                     </a>
                 </li>
-                <li>
-                    <a href="../admin/employeeManage.html">
-                        <div class="fs1" aria-hidden="true" data-icon="&#xe072;"></div>
-                        员工信息
-                    </a>
-                </li>
-                <li>
-                    <a href="../admin/department.html">
-                        <div class="fs1" aria-hidden="true" data-icon="&#xe0a9;"></div>
-                        部门信息
-                    </a>
-                </li>
-                <li>
-                    <a href="../position.html">
-                        <div class="fs1" aria-hidden="true" data-icon="&#xe073;"></div>
-                        职位管理
-                    </a>
-                </li>
-                <li>
-                    <a href="../admin/leaveRecord.html">
-                        <div class="fs1" aria-hidden="true" data-icon="&#xe0e4;"></div>
-                        请假管理
-                    </a>
-                </li>
-                <li>
-                    <a href="../shiftManagement.html">
-                        <div class="fs1" aria-hidden="true" data-icon="&#xe075;"></div>
-                        班次管理
-                    </a>
-                </li>
-                <li>
-                    <a href="../admin/attence.html">
-                        <div class="fs1" aria-hidden="true" data-icon="&#xe096;"></div>
-                        考勤管理
-                    </a>
-                </li>
-                <li>
-                    <a href="../admin/result.html">
-                        <div class="fs1" aria-hidden="true" data-icon="&#xe0b8;"></div>
-                        考勤结果管理
-                    </a>
-                </li>
+                <!--
+                 <li>
+                   <a href="../admin/result.html">
+                     <div class="fs1" aria-hidden="true" data-icon="&#xe0b8;"></div>
+                     考勤结果管理
+                   </a>
+                 </li>
+                -->
             </ul>
             <div class="clearfix">
             </div>
@@ -160,7 +129,8 @@
                                 <div class="span10">
                                     <div class="sign-in-container">
                                         <!-- 申请休假表单 -->
-                                        <form class="form-horizontal span12" onsubmit="return punch_search()" id="applyForm">
+                                        <form class="form-horizontal span12" onsubmit="return punch_search()"
+                                              id="applyForm">
                                             <table>
                                                 <div class="control-group">
                                                     <label class="control-label">
@@ -168,7 +138,8 @@
                                                     </label>
                                                     <div class="controls">
                                                         <div class="input-append">
-                                                            <input type="text" placeholder="请输入员工工号" id="apply_number" name="" onkeyup="punch_search()">
+                                                            <input type="text" placeholder="请输入员工工号" id="apply_number"
+                                                                   name="" onkeyup="punch_search()">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -215,12 +186,15 @@
                                                     </label>
                                                     <div class="controls">
                                                         <div class="input-append">
-                                                            <input type="text" placeholder="请输入申请休假的理由" id="apply_reason" name="" onkeyup="punch_search()">
+                                                            <input type="text" placeholder="请输入申请休假的理由"
+                                                                   id="apply_reason" name="" onkeyup="punch_search()">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="controls controls-row">
-                                                    <button type="button" class="btn btn-success" onclick="submitApply()">提交申请</button>
+                                                    <button type="button" class="btn btn-success"
+                                                            onclick="submitApply()">提交申请
+                                                    </button>
                                                 </div>
                                             </table>
                                         </form>
@@ -234,75 +208,6 @@
 
                 </div>
 
-
-            </div>
-
-            <!-- 右边员工预览 -->
-            <div class="right-sidebar">
-                <div class="wrapper">
-                    <ul class="stats">
-                        <li>
-                            <div class="metro-nav-block nav-block-yellow current">
-                                <a href="#">
-                                    <div class="brand">
-                                        <div class="pull-left fs1" aria-hidden="true" data-icon="&#xe000;"></div>
-                                        <p class="pull-left">&nbsp;部门员工数：</p>
-                                        <h3 class="pull-right">15,859</h3>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="metro-nav-block nav-block-yellow current">
-                                <a href="#">
-                                    <div class="brand">
-                                        <div class="pull-left fs1" aria-hidden="true" data-icon="&#xe01b;"></div>
-                                        <p class="pull-left">&nbsp;今日应到人数：</p>
-                                        <h3 class="pull-right">15,857</h3>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="metro-nav-block nav-block-yellow current">
-                                <a href="#">
-                                    <div class="brand">
-                                        <div class="pull-left fs1" aria-hidden="true" data-icon="&#xe070;"></div>
-                                        <p class="pull-left">&nbsp;今日实到人数：</p>
-                                        <h3 class="pull-right">15,853</h3>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="metro-nav-block nav-block-yellow current">
-                                <a href="#">
-                                    <div class="brand">
-                                        <div class="pull-left fs1" aria-hidden="true" data-icon="&#xe006;"></div>
-                                        <p class="pull-left">&nbsp;请假人数：</p>
-                                        <h3 class="pull-right">2</h3>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="metro-nav-block nav-block-yellow current">
-                                <a href="#">
-                                    <div class="brand">
-                                        <div class="pull-left fs1" aria-hidden="true" data-icon="&#xe04b;"></div>
-                                        <p class="pull-left">&nbsp;缺勤人数：</p>
-                                        <h3 class="pull-right">4</h3>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
 
             </div>
 
@@ -333,7 +238,8 @@
                                 当前密码
                             </label>
                             <div class="controls">
-                                <input type="password" id="password" name="currencyPassword" placeholder="请输入当前密码" onkeyup="changePassword()">
+                                <input type="password" id="password" name="currencyPassword" placeholder="请输入当前密码"
+                                       onkeyup="changePassword()">
                                 <span style="color: red;" id="span_password"></span>
                             </div>
                         </div>
@@ -342,7 +248,8 @@
                                 修改密码
                             </label>
                             <div class="controls">
-                                <input type="password" id="newPassword_1" name="newPassword" placeholder="请输入要修改的密码" onkeyup="changePassword()">
+                                <input type="password" id="newPassword_1" name="newPassword" placeholder="请输入要修改的密码"
+                                       onkeyup="changePassword()">
                                 <span style="color: red;" id="span_newPassword_1"></span>
                             </div>
                         </div>
@@ -351,7 +258,8 @@
                                 确认密码
                             </label>
                             <div class="controls">
-                                <input type="password" id="newPassword_2" name="confirmPassword" placeholder="请确认要修改的密码" onkeyup="changePassword()">
+                                <input type="password" id="newPassword_2" name="confirmPassword" placeholder="请确认要修改的密码"
+                                       onkeyup="changePassword()">
                                 <span style="color: red;" id="span_newPassword_2"></span>
                             </div>
                         </div>
@@ -373,7 +281,7 @@
 <!-- 底部footer start -->
 <footer>
     <p>
-        &copy; 雷格SS Copyright 2018 Powered by Bootstrap! F1.0  备：沪ICP备41749849号-3
+        &copy; XXX
     </p>
 </footer>
 <!-- 底部footer end -->
@@ -408,16 +316,17 @@
                 if (data == "SUCCESS") {
                     //打卡成功
                     message('success', '打卡成功');
-                } else if(data == "fail"){
+                } else if (data == "fail") {
                     //打卡失败
                     message('error', '打卡失败');
-                }else {
+                } else {
                     //其他错误信息
                     message('error', 'data');
                 }
             }
         })
     }
+
     /*
      * 点击查询员工信息执行方法：
      * 一旦员工工号输入框内容改变，就执行该方法动态查询员工信息
@@ -437,14 +346,14 @@
         $.ajax({
             cache: false,
             type: "GET",
-            url:"static/data/punch.txt",
+            url: "static/data/punch.txt",
             data: 'search_number=' + search_number,
-            dataType : 'json',
-            async : false,
-            error: function(request) {
+            dataType: 'json',
+            async: false,
+            error: function (request) {
                 console.log(request.error);
             },
-            success: function(data) {
+            success: function (data) {
                 $('#inf_number').val(data.number);
                 $('#inf_name').val(data.name);
                 $('#inf_phone').val(data.phone);
@@ -455,18 +364,19 @@
             }
         });
     }
+
     /*
      * 查询员工信息按钮功能
      * */
     function punch_search() {
-        document.getElementById("span_search").innerHTML='';
+        document.getElementById("span_search").innerHTML = '';
         var number = document.getElementById('search_number').value;
         //清空span内容
-        if (number == ""){
-            document.getElementById("span_search").innerHTML='员工工号为空';
+        if (number == "") {
+            document.getElementById("span_search").innerHTML = '员工工号为空';
             return false;
-        }else if(isNaN(number)){
-            document.getElementById("span_search").innerHTML='请输入数字';
+        } else if (isNaN(number)) {
+            document.getElementById("span_search").innerHTML = '请输入数字';
             return false;
         }
         search_ajax();
@@ -478,17 +388,17 @@
      * */
     function punch() {
         //清空span内容
-        document.getElementById("span_punch").innerHTML='';
+        document.getElementById("span_punch").innerHTML = '';
         var number = document.getElementById('inf_number').value;
-        if (number == ""){
-            document.getElementById("span_punch").innerHTML='员工工号为空';
+        if (number == "") {
+            document.getElementById("span_punch").innerHTML = '员工工号为空';
             return false;
         }
         //获取表单数据
         var punchFormJson = $('#punchForm').serializeArray();
         //构造请求参数
         var punchSubmitJson = {
-            userId: parseInt(punchFormJson[0].value,10),
+            userId: parseInt(punchFormJson[0].value, 10),
             address: '重庆市永川区重庆文理学院'
         };
 

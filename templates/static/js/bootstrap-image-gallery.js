@@ -19,7 +19,7 @@
         define([
             'jquery',
             'load-image',
-            'bootstrap'
+            'templates/static/js/bootstrap'
         ], factory);
     } else {
         // Browser globals:

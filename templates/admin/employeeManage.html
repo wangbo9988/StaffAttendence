@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <!--[if lt IE 7]>
 
@@ -62,7 +63,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/LoginOut/">
                     注销账户
                 </a>
             </li>
@@ -175,15 +176,6 @@
                                                             职位
                                                         </th>
                                                         <th>
-                                                            班次
-                                                        </th>
-                                                        <th>
-                                                            等级
-                                                        </th>
-                                                        <th>
-                                                            员工状态
-                                                        </th>
-                                                        <th>
                                                             操作
                                                         </th>
                                                     </tr>
@@ -218,15 +210,6 @@
                                                         </th>
                                                         <th>
                                                             职位
-                                                        </th>
-                                                        <th>
-                                                            班次
-                                                        </th>
-                                                        <th>
-                                                            等级
-                                                        </th>
-                                                        <th>
-                                                            员工状态
                                                         </th>
                                                         <th>
                                                             操作
@@ -337,24 +320,6 @@
                                 <span style="color: red;" id="position_type"></span>
                             </div>
                         </div>
-                        <div class="control-group">
-                            <label class="control-label" for="shift_id">
-                                班次
-                            </label>
-                            <div class="controls">
-                                <input type="text" id="shift_id" placeholder="请输入员工班次" name="shift_id">
-                                <span style="color: red;" id="shift_id_address"></span>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="level">
-                                等级
-                            </label>
-                            <div class="controls">
-                                <input type="text" id="level" placeholder="请输入员工等级" name="level">
-                                <span style="color: red;" id="level_address"></span>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -431,7 +396,7 @@
 <!-- 底部footer start -->
 <footer>
     <p>
-        &copy; 雷格SS Copyright 2018 Powered by Bootstrap! F1.0 备：沪ICP备41749849号-3
+        &copy; xxxx
     </p>
 </footer>
 <!-- 底部footer end -->
@@ -491,8 +456,6 @@
      *   员工手机号：phone
      *   员工所在部门：department
      *   员工职位：position
-     *   员工班次：shift_id
-     *   员工等级：level
      * */
     function getEmployee_on() {
         $.ajax({
@@ -537,8 +500,6 @@
      *   员工手机号：phone
      *   员工所在部门：department
      *   员工职位：position
-     *   员工班次：shift_id
-     *   员工等级：level
      * */
     function getEmployee_off() {
         $.ajax({
@@ -579,8 +540,6 @@
         var phone = td_content.eq(3).text(); //获取当前行第二个td的值
         var department = td_content.eq(4).text(); //获取当前行第二个td的值
         var position = td_content.eq(5).text(); //获取当前行第二个td的值
-        var shift_id = td_content.eq(6).text(); //获取当前行第二个td的值
-        var level = td_content.eq(7).text(); //获取当前行第二个td的值
 
         document.getElementById('id').value = id;
         document.getElementById('name').value = name;
@@ -588,8 +547,6 @@
         document.getElementById('phone').value = phone;
         document.getElementById('department').value = department;
         document.getElementById('position').value = position;
-        document.getElementById('shift_id').value = shift_id;
-        document.getElementById('level').value = level;
     }
 
     //编辑部门信息表单验证
@@ -604,8 +561,6 @@
             phone: employeeFormJson[3].value,
             department: employeeFormJson[4].value,
             position: employeeFormJson[5].value,
-            shift_id: parseInt(employeeFormJson[6].value),
-            level: parseInt(employeeFormJson[7].value)
         };
         $.ajax({
             catch: false,

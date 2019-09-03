@@ -73,13 +73,13 @@
         <div class="top-nav">
             <ul>
                 <li>
-                    <a href="/toIndex/" class="selected">
+                    <a href="/toIndex/">
                         <div class="fs1" aria-hidden="true" data-icon="&#xe0a0;"></div>
                         打卡测试
                     </a>
                 </li>
                 <li>
-                    <a href="/toPersonalInfor/">
+                    <a href="/toPersonalInfor/" class="selected">
                         <div class="fs1" aria-hidden="true" data-icon="&#xe072;"></div>
                         个人信息
                     </a>
@@ -245,6 +245,7 @@
 
 
             </div>
+
         </div>
     </div>
     <!--/.fluid-container-->
@@ -343,8 +344,6 @@
     *   员工手机号：inf_phone
     *   员工所在部门：inf_department
     *   员工职位：inf_position
-    *   员工班次：inf_shift_id
-    *   员工状态（在/离职）：inf_status
     * */
     function search_ajax() {
         $.ajax({
@@ -363,8 +362,6 @@
                 $('#inf_phone').val(data.phone);
                 $('#inf_department').val(data.department);
                 $('#inf_position').val(data.position);
-                $('#inf_shift_id').val(data.shift_id);
-                $('#inf_status').val(data.status);
             }
         });
     }
