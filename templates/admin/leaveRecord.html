@@ -32,10 +32,10 @@
     <meta name="author" content="">
     <!-- bootstrap css -->
 
-    <link href="../static/icomoon/style.css" rel="stylesheet">
-    <link href="../static/css/main.css" rel="stylesheet">
+    <link href="{% static "/icomoon/style.css" %}" rel="stylesheet">
+    <link href="{% static "/css/main.css" %}" rel="stylesheet">
     <!-- Important. For Theming change primary-color variable in main.css  -->
-    <link href="../static/css/alertify.core.css" rel="stylesheet" id="toggleCSS">
+    <link href="{% static "/css/alertify.core.css" %}" rel="stylesheet" id="toggleCSS">
     <!--[if lte IE 7]>
     <script src="static/css/icomoon-font/lte-ie7.js">
     </script>
@@ -46,7 +46,7 @@
 <!-- 头部状态栏 start -->
 <header>
     <a href="#" class="logo">
-        <img src="../static/img/logo.png" alt="Logo"/>
+        <img src="{% static "/img/logo.png" %}" alt="Logo"/>
     </a>
     <div class="btn-group">
         <button class="btn btn-primary">
@@ -57,11 +57,6 @@
           </span>
         </button>
         <ul class="dropdown-menu pull-right">
-            <li>
-                <a href="#myModal" role="button" data-toggle="modal">
-                    修改密码
-                </a>
-            </li>
             <li>
                 <a href="/LoginOut/">
                     注销账户
@@ -181,7 +176,8 @@
                                             </tr>
                                             </thead>
 
-                                            <tbody id="table_record" role="alert" aria-live="polite" aria-relevant="all">
+                                            <tbody id="table_record" role="alert" aria-live="polite"
+                                                   aria-relevant="all">
                                             </tbody>
                                         </table>
                                     </div>
@@ -349,7 +345,8 @@
                                 确认密码
                             </label>
                             <div class="controls">
-                                <input type="password" id="newPassword_2" name="confirmPassword" placeholder="请确认要修改的密码">
+                                <input type="password" id="newPassword_2" name="confirmPassword"
+                                       placeholder="请确认要修改的密码">
                                 <span style="color: red;" id="span_newPassword_2"></span>
                             </div>
                         </div>
@@ -371,24 +368,24 @@
 <!-- 底部footer start -->
 <footer>
     <p>
-        &copy; 雷格SS Copyright 2018 Powered by Bootstrap! F1.0 备：沪ICP备41749849号-3
+        &copy; XXX
     </p>
 </footer>
 <!-- 底部footer end -->
 
 
-<script src="../static/js/jquery.min.js">
+<script src="{% static "/js/jquery.min.js" %}">
 </script>
-<script src="../static/js/bootstrap.js">
+<script src=" {% static "/js/bootstrap.js" %}">
 </script>
-<script type="text/javascript" src="../static/js/alertify.min.js">
+<script type="text/javascript" src="{% static "/js/alertify.min.js" %}">
 </script>
-<script src="../static/js/jquery.scrollUp.js">
+<script src="{% static "/js/jquery.scrollUp.js" %}">
 </script>
-<script src="../static/js/jquery.dataTables.js">
+<script src="{% static "/js/jquery.dataTables.js" %}">
 </script>
 //主JS代码
-<script type="text/javascript" src="../static/js/main.js">
+<script type="text/javascript" src="{% static "/js/main.js" %}">
 </script>
 <script>
     /*
@@ -411,27 +408,27 @@
 <script>
     function getLeave_record() {
         $.ajax({
-            catch : false,
-            type : "GET",
-            url : "static/data/leaveRecord.txt",
-            data : "department_id=1",
-            dataType : "json",
-            async : false,
-            error : function (request) {
+            catch: false,
+            type: "GET",
+            url: "static/data/leaveRecord.txt",
+            data: "department_id=1",
+            dataType: "json",
+            async: false,
+            error: function (request) {
                 console.log(request.error);
             },
-            success : function (data) {
+            success: function (data) {
                 var html = "";
-                for(var i = 0;i < data.length;i++){
+                for (var i = 0; i < data.length; i++) {
                     html += "<tr>";
-                    for(attr in data[i]){
+                    for (attr in data[i]) {
                         /* 如果是请假理由一栏，网页隐藏 */
-                        if(attr == "reason"){
+                        if (attr == "reason") {
                             html += "<td style=\"display:none\">";
                             html += data[i][attr];
                             html += "</td>";
                             break;
-                        }else if(attr == "leava_start" || attr == "leava_stop"){
+                        } else if (attr == "leava_start" || attr == "leava_stop") {
                             html += "<td>";
                             html += data[i][attr];
                             html += "</td>";
@@ -464,6 +461,7 @@
             buttonFocus: "ok"
         });
     };
+
     //删除按钮点击事件
     function del() {
         reset();
@@ -539,10 +537,10 @@
         } else if (leava_start == "") {
             document.getElementById("span_leava_start").innerHTML = '请输入请假开始时间';
             return false;
-        }else if (leava_stop == "") {
+        } else if (leava_stop == "") {
             document.getElementById("span_leava_stop").innerHTML = '请输入请假结束时间';
             return false;
-        }else if (reason == "") {
+        } else if (reason == "") {
             document.getElementById("span_reason").innerHTML = '请输入请假理由';
             return false;
         }

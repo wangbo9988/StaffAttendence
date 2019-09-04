@@ -32,12 +32,12 @@
     <meta name="author" content="">
     <!-- bootstrap css -->
 
-    <link href="../static/icomoon/style.css" rel="stylesheet">
-    <link href="../static/css/main.css" rel="stylesheet">
+    <link href="{% static "/icomoon/style.css" %}" rel="stylesheet">
+    <link href="{% static "/css/main.css" %}" rel="stylesheet">
     <!-- Important. For Theming change primary-color variable in main.css  -->
-    <link href="../static/css/alertify.core.css" rel="stylesheet" id="toggleCSS">
+    <link href="{% static "/css/alertify.core.css" %}" rel="stylesheet" id="toggleCSS">
     <!--[if lte IE 7]>
-    <script src="static/css/icomoon-font/lte-ie7.js">
+    <script src="{% static "/css/icomoon-font/lte-ie7.js"%}">
     </script>
     <![endif]-->
 
@@ -46,7 +46,7 @@
 <!-- 头部状态栏 start -->
 <header>
     <a href="#" class="logo">
-        <img src="../static/img/logo.png" alt="Logo"/>
+        <img src="{% static "/img/logo.png" %}" alt="Logo"/>
     </a>
     <div class="btn-group">
         <button class="btn btn-primary">
@@ -57,11 +57,6 @@
           </span>
         </button>
         <ul class="dropdown-menu pull-right">
-            <li>
-                <a href="#myModal" role="button" data-toggle="modal">
-                    修改密码
-                </a>
-            </li>
             <li>
                 <a href="/LoginOut/">
                     注销账户
@@ -189,7 +184,9 @@
                                         </select>
                                     </div>
                                     <div style="display: inline-block">
-                                        <button type="button" style="margin-bottom: 10px" class="btn btn-success" onclick="searchByMonth()">确定</button>
+                                        <button type="button" style="margin-bottom: 10px" class="btn btn-success"
+                                                onclick="searchByMonth()">确定
+                                        </button>
                                     </div>
                                 </div>
                                 <div id="dt_example" class="example_alt_pagination">
@@ -245,7 +242,8 @@
                                             </tr>
                                             </thead>
 
-                                            <tbody id="table_department" role="alert" aria-live="polite" aria-relevant="all">
+                                            <tbody id="table_department" role="alert" aria-live="polite"
+                                                   aria-relevant="all">
                                             </tbody>
                                         </table>
                                     </div>
@@ -359,7 +357,8 @@
                                 确认密码
                             </label>
                             <div class="controls">
-                                <input type="password" id="newPassword_2" name="confirmPassword" placeholder="请确认要修改的密码">
+                                <input type="password" id="newPassword_2" name="confirmPassword"
+                                       placeholder="请确认要修改的密码">
                                 <span style="color: red;" id="span_newPassword_2"></span>
                             </div>
                         </div>
@@ -381,24 +380,24 @@
 <!-- 底部footer start -->
 <footer>
     <p>
-        &copy; 雷格SS Copyright 2018 Powered by Bootstrap! F1.0 备：沪ICP备41749849号-3
+        &copy; XXX
     </p>
 </footer>
 <!-- 底部footer end -->
 
 
-<script src="../static/js/jquery.min.js">
+<script src="{% static "/js/jquery.min.js" %}">
 </script>
-<script src="../static/js/bootstrap.js">
+<script src="{% static "/js/bootstrap.js" %}">
 </script>
-<script type="text/javascript" src="../static/js/alertify.min.js">
+<script type="text/javascript" src="{% static "/js/alertify.min.js" %}">
 </script>
-<script src="../static/js/jquery.scrollUp.js">
+<script src="{% static "/js/jquery.scrollUp.js" %}">
 </script>
-<script src="../static/js/jquery.dataTables.js">
+<script src="{% static "/js/jquery.dataTables.js" %}">
 </script>
 //主JS代码
-<script type="text/javascript" src="../static/js/main.js">
+<script type="text/javascript" src="{% static "/js/main.js" %}">
 </script>
 <script>
     /*
@@ -421,20 +420,20 @@
 <script>
     function getDepartment() {
         $.ajax({
-            catch : false,
-            type : "GET",
-            url : "static/data/result.txt",
-            data : "department_id=1",
-            dataType : "json",
-            async : false,
-            error : function (request) {
+            catch: false,
+            type: "GET",
+            url: "static/data/result.txt",
+            data: "department_id=1",
+            dataType: "json",
+            async: false,
+            error: function (request) {
                 console.log(request.error);
             },
-            success : function (data) {
+            success: function (data) {
                 var html = "";
-                for(var i = 0;i < data.length;i++){
+                for (var i = 0; i < data.length; i++) {
                     html += "<tr>";
-                    for(attr in data[i]){
+                    for (attr in data[i]) {
                         html += "<td>";
                         html += data[i][attr];
                         html += "</td>";
@@ -450,7 +449,7 @@
         })
     }
 
-    function searchByMonth(){
+    function searchByMonth() {
         var startYear = $('#startYear').val();
         var startMonth = $('#startMonth').val();
         var startDate = new Date(startYear + '-' + startMonth);  //起始查询时间Date格式
@@ -497,6 +496,7 @@
             buttonFocus: "ok"
         });
     };
+
     //删除按钮点击事件
     function del(obj) {
         reset();

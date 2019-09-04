@@ -26,6 +26,7 @@ urlpatterns = [
     path('Register/', views.Register),  # 用户注册
     path('toIndex/', views2.ToIndex),  # 跳转到主界面
     path('toApplyLeave/', views2.ToApplyLeave),  # 跳转到申请休假界面
+    path('toPersonalInfor/', views2.ToPersonalInfor),  # 跳转到申请休假界面
     path('toAttence/', views2.ToAttence),  # 跳转到勤管理界面
     path('toDepartment/', views2.ToDepartment),  # 跳转到部门管理界面
     path('toLeaveRecord/', views2.ToLeaveRecord),  # 跳转到请假记录界面
