@@ -31,4 +31,8 @@ urlpatterns = [
     path('toDepartment/', views2.ToDepartment),  # 跳转到部门管理界面
     path('toLeaveRecord/', views2.ToLeaveRecord),  # 跳转到请假记录界面
     path('toResult/', views2.ToResult),  # 跳转到考勤结果界面
+    path('getUserInfor/', views.GetUserInfor),  # 获取用户信息
+    path('punchIns/', views.PunchIn),  # 员工打卡
+    path('changeUserInfor/', views.ChangeUserInfor),  # 修改用户信息
+    path('applyLeave/', views.ApplyLeave),  # 申请休假
 ]

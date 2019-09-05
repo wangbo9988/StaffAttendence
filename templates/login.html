@@ -46,7 +46,7 @@
 <body>
 <!-- 头部状态栏 start -->
 <header>
-    <a href="#" class="logo">
+    <a href="/" class="logo">
         <img src="static/img/logo.png" alt="Logo"/>
     </a>
 </header>
@@ -100,7 +100,7 @@
                                             <div class="content">
                                                 <div class="row-fluid">
                                                     <div class="span12">
-                                                        <input class="span12 email" name="username" placeholder="请输入用户名，手机号或邮箱号"
+                                                        <input class="span12 email" name="username" placeholder="请输入用户名"
                                                                required="required" type="text" value="">
                                                     </div>
                                                 </div>
@@ -115,6 +115,7 @@
                                                 <input class="btn btn-danger" name="Login" type="button"
                                                        onclick="login ()" value="登陆"
                                                        id="loginBtn">
+                                                <a class="link" href="/toRegister/">注册</a>
                                                 <div class="clearfix"></div>
                                             </div>
                                         </form>
@@ -191,7 +192,7 @@
                 console.log(data)
                 if (data.status == "0") {
                     //登陆失败
-                    message('error', '登陆失败');
+                    alertify.error('登陆失败');
                     return false;
                 } else {
                     //登陆成功

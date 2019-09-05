@@ -42,7 +42,7 @@ def ToRegister(request):
 # ========================
 def ToIndex(request):
     userInfor = request.session.get('userInfor')
-    if userInfor['position'] == '0':
+    if userInfor['position'] == '管理员':
         return render(request, 'admin/attence.html', {})
     else:
         return render(request, 'staff/punch.html', {})

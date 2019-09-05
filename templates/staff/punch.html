@@ -45,12 +45,12 @@
 <body onload="message('success','跳转成功');">
 <!-- 头部状态栏 start -->
 <header>
-    <a href="#" class="logo">
-        <img src="../static/img/logo.png" alt="Logo"/>
+    <a href="/toIndex/" class="logo">
+        <img src="{% static "/img/logo.png" %}" alt="Logo"/>
     </a>
     <div class="btn-group">
         <button class="btn btn-primary">
-            早上好，admin ！
+            早上好 ！
         </button>
         <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle">
           <span class="caret">
@@ -114,46 +114,6 @@
                 <div class="row-fluid">
 
                     <div class="span12">
-                        <!-- 查询员工 -->
-                        <div class="widget">
-                            <div class="widget-header" id="search">
-                                <div class="title">
-                                    查询员工
-                                </div>
-                                <span class="tools">
-                      <a class="fs1" aria-hidden="true" data-icon="&#xe090;"></a>
-                    </span>
-                            </div>
-                            <div class="widget-body">
-                                <div class="span1"></div>
-                                <div class="span10">
-                                    <div class="sign-in-container">
-                                        <!-- 员工信息查询输入框 -->
-                                        <form class="form-horizontal span12" onsubmit="return punch_search()">
-                                            <table>
-                                                <div class="control-group">
-                                                    <label class="control-label">
-                                                        员工工号：
-                                                    </label>
-                                                    <div class="controls">
-                                                        <div class="input-append">
-                                                            <input type="text" placeholder="请输入员工工号" id="search_number"
-                                                                   name="" onkeyup="punch_search()">
-                                                            <input class="btn btn-danger" type="button" value="查询">
-                                                        </div>
-                                                    </div>
-                                                    <div class="controls">
-                                                        <span style="color: red;" id="span_search"></span>
-                                                    </div>
-                                                </div>
-                                            </table>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="span1"></div>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>
                         <!-- 员工信息 -->
                         <div class="widget">
                             <div class="widget-header" id="punch">
@@ -173,15 +133,6 @@
                                             <div class="span8">
                                                 <div class="control-group">
                                                     <label class="control-label">
-                                                        员工工号：
-                                                    </label>
-                                                    <div class="controls controls-row">
-                                                        <input class="span6" id="inf_number" type="text" name="userId"
-                                                               readonly>
-                                                    </div>
-                                                </div>
-                                                <div class="control-group">
-                                                    <label class="control-label">
                                                         员工姓名：
                                                     </label>
                                                     <div class="controls controls-row">
@@ -190,10 +141,10 @@
                                                 </div>
                                                 <div class="control-group">
                                                     <label class="control-label">
-                                                        手机号：
+                                                        性别：
                                                     </label>
                                                     <div class="controls controls-row">
-                                                        <input class="span6" id="inf_phone" type="text" readonly>
+                                                        <input class="span6" id="inf_sex" type="text" readonly>
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
@@ -210,15 +161,6 @@
                                                     </label>
                                                     <div class="controls controls-row">
                                                         <input class="span6" id="inf_position" type="text" readonly>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="span3">
-                                                <div class="control-group">
-                                                    <div class="thumbnail">
-                                                        <img alt="300x200" src="../static/img/photo.jpg">
-                                                        <div class="caption">
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -319,8 +261,6 @@
     </p>
 </footer>
 <!-- 底部footer end -->
-
-
 <script src="../static/js/jquery.min.js">
 </script>
 <script src="../static/js/bootstrap.js">
@@ -332,39 +272,29 @@
 </script>
 <script>
     /*
-    * 点击查询员工信息执行方法：
-    * 一旦员工工号输入框内容改变，就执行该方法动态查询员工信息
-    *
-    * 传入值：
-    *   员工工号：search_number
-    * 返回值：
-    *   员工工号：inf_number
     *   员工姓名：inf_name
+    *   员工性别：inf_sex
     *   员工手机号：inf_phone
     *   员工所在部门：inf_department
     *   员工职位：inf_position
-    *   员工班次：inf_shift_id
-    *   员工状态（在/离职）：inf_status
+    *   员工邮箱：inf_email
     * */
-    function search_ajax() {
+    window.onload = function search_ajax() {
         $.ajax({
             cache: false,
             type: "GET",
-            url: "static/data/punch.txt",
-            data: 'search_number=' + search_number,
+            url: "/getUserInfor/",
+            data: '',
             dataType: 'json',
             async: false,
             error: function (request) {
                 console.log(request.error);
             },
             success: function (data) {
-                $('#inf_number').val(data.number);
-                $('#inf_name').val(data.name);
-                $('#inf_phone').val(data.phone);
-                $('#inf_department').val(data.department);
-                $('#inf_position').val(data.position);
-                $('#inf_shift_id').val(data.shift_id);
-                $('#inf_status').val(data.status);
+                $('#inf_name').val(data.userInfor.name);
+                $('#inf_sex').val(data.userInfor.sex);
+                $('#inf_department').val(data.userInfor.department);
+                $('#inf_position').val(data.userInfor.position);
             }
         });
     }
@@ -391,36 +321,23 @@
     * 打卡按钮功能
     * */
     function punch() {
-        //清空span内容
-        document.getElementById("span_punch").innerHTML = '';
-        var number = document.getElementById('inf_number').value;
-        if (number == "") {
-            document.getElementById("span_punch").innerHTML = '员工工号为空';
-            return false;
-        }
-        //获取表单数据
-        var punchFormJson = $('#punchForm').serializeArray();
         //构造请求参数
-        var punchSubmitJson = {
-            userId: parseInt(punchFormJson[0].value, 10),
-            address: '重庆市永川区重庆文理学院'
-        };
         $.ajax({
             catch: false,
             type: "POST",
-            url: "/attend/insert",
-            data: punchSubmitJson,
+            url: "/punchIns/",
+            data: '',
             async: false,
             success: function (data) {
-                if (data == "SUCCESS") {
+                if (data.status == "1") {
                     //打卡成功
-                    message('success', '打卡成功');
-                } else if (data == "fail") {
+                    alertify.success('打卡成功');
+                } else if (data == "0") {
                     //打卡失败
-                    message('error', '打卡失败');
+                    alertify.error('打卡失败');
                 } else {
                     //其他错误信息
-                    message('error', 'data');
+                    alertify.error(data.status);
                 }
             }
         })

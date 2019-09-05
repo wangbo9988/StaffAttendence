@@ -45,12 +45,12 @@
 <body onload="message('success','跳转成功');">
 <!-- 头部状态栏 start -->
 <header>
-    <a href="#" class="logo">
-        <img src="../static/img/logo.png" alt="Logo"/>
+    <a href="/toIndex/" class="logo">
+        <img src="{% static "/img/logo.png" %}" alt="Logo"/>
     </a>
     <div class="btn-group">
         <button class="btn btn-primary">
-            早上好，admin ！
+            早上好 ！
         </button>
         <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle">
           <span class="caret">
@@ -114,46 +114,6 @@
                 <div class="row-fluid">
 
                     <div class="span12">
-                        <!-- 查询员工 -->
-                        <div class="widget">
-                            <div class="widget-header" id="search">
-                                <div class="title">
-                                    查询员工
-                                </div>
-                                <span class="tools">
-                      <a class="fs1" aria-hidden="true" data-icon="&#xe090;"></a>
-                    </span>
-                            </div>
-                            <div class="widget-body">
-                                <div class="span1"></div>
-                                <div class="span10">
-                                    <div class="sign-in-container">
-                                        <!-- 员工信息查询输入框 -->
-                                        <form class="form-horizontal span12" onsubmit="return punch_search()">
-                                            <table>
-                                                <div class="control-group">
-                                                    <label class="control-label">
-                                                        员工工号：
-                                                    </label>
-                                                    <div class="controls">
-                                                        <div class="input-append">
-                                                            <input type="text" placeholder="请输入员工工号" id="search_number"
-                                                                   name="" onkeyup="punch_search()">
-                                                            <input class="btn btn-danger" type="button" value="查询">
-                                                        </div>
-                                                    </div>
-                                                    <div class="controls">
-                                                        <span style="color: red;" id="span_search"></span>
-                                                    </div>
-                                                </div>
-                                            </table>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="span1"></div>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>
                         <!-- 员工信息 -->
                         <div class="widget">
                             <div class="widget-header" id="punch">
@@ -169,23 +129,24 @@
                                 <div class="span10">
                                     <div class="sign-in-container">
                                         <!-- 员工信息框 -->
-                                        <form action="#" class="form-horizontal span12" id="punchForm">
+                                        <form action="#" class="form-horizontal span12" method="post" id="punchForm">
                                             <div class="span8">
-                                                <div class="control-group">
-                                                    <label class="control-label">
-                                                        员工工号：
-                                                    </label>
-                                                    <div class="controls controls-row">
-                                                        <input class="span6" id="inf_number" type="text" name="userId"
-                                                               readonly>
-                                                    </div>
-                                                </div>
                                                 <div class="control-group">
                                                     <label class="control-label">
                                                         员工姓名：
                                                     </label>
                                                     <div class="controls controls-row">
-                                                        <input class="span6" id="inf_name" type="text" readonly>
+                                                        <input class="span6" id="inf_name" type="text"
+                                                               required="required" name="name">
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label">
+                                                        性别：
+                                                    </label>
+                                                    <div class="controls controls-row">
+                                                        <input class="span6" id="inf_sex" type="text"
+                                                               required="required" name="sex">
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
@@ -193,7 +154,8 @@
                                                         手机号：
                                                     </label>
                                                     <div class="controls controls-row">
-                                                        <input class="span6" id="inf_phone" type="text" readonly>
+                                                        <input class="span6" id="inf_phone" type="text"
+                                                               required="required" name="tellPhone">
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
@@ -201,7 +163,8 @@
                                                         所属部门：
                                                     </label>
                                                     <div class="controls controls-row">
-                                                        <input class="span6" id="inf_department" type="text" readonly>
+                                                        <input class="span6" id="inf_department" type="text"
+                                                               required="required" name="department">
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
@@ -209,24 +172,26 @@
                                                         职位：
                                                     </label>
                                                     <div class="controls controls-row">
-                                                        <input class="span6" id="inf_position" type="text" readonly>
+                                                        <input class="span6" id="inf_position" type="text"
+                                                               required="required" name="position">
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="span3">
                                                 <div class="control-group">
-                                                    <div class="thumbnail">
-                                                        <img alt="300x200" src="../static/img/photo.jpg">
-                                                        <div class="caption">
-                                                        </div>
+                                                    <label class="control-label">
+                                                        邮箱：
+                                                    </label>
+                                                    <div class="controls controls-row">
+                                                        <input class="span6" id="inf_email" type="text"
+                                                               required="required" name="email">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="span8">
                                                 <div class="control-group">
                                                     <div class="controls controls-row">
-                                                        <button class="btn btn-success" type="button" onclick="punch()">
-                                                            打卡
+                                                        <button class="btn btn-success" type="button"
+                                                                onclick="change()">
+                                                            修改
                                                         </button>
                                                         <span style="color: red;" id="span_punch"></span>
                                                     </div>
@@ -245,7 +210,6 @@
 
 
             </div>
-
         </div>
     </div>
     <!--/.fluid-container-->
@@ -320,8 +284,6 @@
     </p>
 </footer>
 <!-- 底部footer end -->
-
-
 <script src="../static/js/jquery.min.js">
 </script>
 <script src="../static/js/bootstrap.js">
@@ -333,91 +295,67 @@
 </script>
 <script>
     /*
-    * 点击查询员工信息执行方法：
-    * 一旦员工工号输入框内容改变，就执行该方法动态查询员工信息
-    *
-    * 传入值：
-    *   员工工号：search_number
-    * 返回值：
-    *   员工工号：inf_number
     *   员工姓名：inf_name
+    *   员工性别：inf_sex
     *   员工手机号：inf_phone
     *   员工所在部门：inf_department
     *   员工职位：inf_position
+    *   员工邮箱：inf_email
     * */
-    function search_ajax() {
+    window.onload = function search_ajax() {
         $.ajax({
             cache: false,
             type: "GET",
-            url: "static/data/punch.txt",
-            data: 'search_number=' + search_number,
+            url: "/getUserInfor/",
+            data: '',
             dataType: 'json',
             async: false,
             error: function (request) {
                 console.log(request.error);
             },
             success: function (data) {
-                $('#inf_number').val(data.number);
-                $('#inf_name').val(data.name);
-                $('#inf_phone').val(data.phone);
-                $('#inf_department').val(data.department);
-                $('#inf_position').val(data.position);
+                $('#inf_name').val(data.userInfor.name);
+                $('#inf_sex').val(data.userInfor.sex);
+                $('#inf_phone').val(data.userInfor.tellPhone);
+                $('#inf_department').val(data.userInfor.department);
+                $('#inf_position').val(data.userInfor.position);
+                $('#inf_email').val(data.userInfor.email);
             }
         });
     }
 
     /*
-    * 查询员工信息按钮功能
+    * 修改按钮功能
     * */
-    function punch_search() {
-        document.getElementById("span_search").innerHTML = '';
-        var number = document.getElementById('search_number').value;
-        //清空span内容
-        if (number == "") {
-            document.getElementById("span_search").innerHTML = '员工工号为空';
-            return false;
-        } else if (isNaN(number)) {
-            document.getElementById("span_search").innerHTML = '请输入数字';
-            return false;
-        }
-        search_ajax();
-        return true;
-    }
-
-    /*
-    * 打卡按钮功能
-    * */
-    function punch() {
-        //清空span内容
-        document.getElementById("span_punch").innerHTML = '';
-        var number = document.getElementById('inf_number').value;
-        if (number == "") {
-            document.getElementById("span_punch").innerHTML = '员工工号为空';
-            return false;
-        }
-        //获取表单数据
+    function change() {
         var punchFormJson = $('#punchForm').serializeArray();
-        //构造请求参数
-        var punchSubmitJson = {
-            userId: parseInt(punchFormJson[0].value, 10),
-            address: '重庆市永川区重庆文理学院'
+        var submitData = {
+            name: punchFormJson[0].value,
+            sex: punchFormJson[1].value,
+            tellPhone: punchFormJson[2].value,
+            department: punchFormJson[3].value,
+            position: punchFormJson[4].value,
+            email: punchFormJson[5].value
         };
+        console.log(submitData)
+        var submitJson = JSON.stringify(submitData);
+        //构造请求参数
         $.ajax({
             catch: false,
             type: "POST",
-            url: "/attend/insert",
-            data: punchSubmitJson,
+            url: "/changeUserInfor/",
+            data: submitJson,
             async: false,
             success: function (data) {
-                if (data == "SUCCESS") {
-                    //打卡成功
-                    message('success', '打卡成功');
-                } else if (data == "fail") {
-                    //打卡失败
-                    message('error', '打卡失败');
+                if (data.status == "1") {
+                    //修改成功
+                    alertify.success('修改成功');
+                } else if (data == "0") {
+                    //修改失败
+                    alertify.error('修改失败');
                 } else {
                     //其他错误信息
-                    message('error', 'data');
+                    alertify.error(data.status);
                 }
             }
         })
