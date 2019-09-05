@@ -21,9 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views2.ToLogin),  # 跳转到登录界面
     path('toRegister/', views2.ToRegister),  # 跳转到注册界面
-    path('login/', views.Login),  # 用户登录
-    path('LoginOut/', views.LoginOut),  # 用户登出
-    path('Register/', views.Register),  # 用户注册
     path('toIndex/', views2.ToIndex),  # 跳转到主界面
     path('toApplyLeave/', views2.ToApplyLeave),  # 跳转到申请休假界面
     path('toPersonalInfor/', views2.ToPersonalInfor),  # 跳转到申请休假界面
@@ -31,6 +28,13 @@ urlpatterns = [
     path('toDepartment/', views2.ToDepartment),  # 跳转到部门管理界面
     path('toLeaveRecord/', views2.ToLeaveRecord),  # 跳转到请假记录界面
     path('toResult/', views2.ToResult),  # 跳转到考勤结果界面
+    path('toEmployeeManage/', views2.ToEmployeeManage),  # 跳转到员工信息界面
+    path('toDepartment/', views2.ToDepartment),  # 跳转到部门管理界面
+    path('toLeaveRecord/', views2.ToLeaveRecord),  # 跳转到请假管理界面
+
+    path('login/', views.Login),  # 用户登录
+    path('LoginOut/', views.LoginOut),  # 用户登出
+    path('Register/', views.Register),  # 用户注册
     path('getUserInfor/', views.GetUserInfor),  # 获取用户信息
     path('punchIns/', views.PunchIn),  # 员工打卡
     path('changeUserInfor/', views.ChangeUserInfor),  # 修改用户信息

@@ -16,10 +16,11 @@ import json
 # 3、ToIndex 跳转到主界面
 # 4、ToApplyLeave 跳转到申请休假界面
 # 5、ToPersonalInfor 跳转到个人信息界面
-# 6、ToAttence 跳转到勤管理界面
+# 6、ToAttence 跳转到考勤结果界面
 # 7、ToDepartment 跳转到部门管理界面
 # 8、ToLeaveRecord 跳转到请假记录界面
-# 9、ToResult 跳转到考勤结果界面
+# 9、ToResult 跳转到考勤管理界面
+# 10、ToEmployeeManage 跳转到员工信息界面
 #
 
 
@@ -63,7 +64,7 @@ def ToPersonalInfor(request):
 
 
 # ========================
-# 6、跳转到勤管理界面
+# 6、跳转到考勤管理界面
 # ========================
 def ToAttence(request):
     return render(request, 'admin/attence.html', {})
@@ -84,7 +85,14 @@ def ToLeaveRecord(request):
 
 
 # ========================
-# 9、跳转到考勤结果界面
+# 9、跳转到考勤管理界面
 # ========================
 def ToResult(request):
-    return render(request, 'admin/result.htmll', {})
+    return render(request, 'admin/result.html', {})
+
+
+# ========================
+# 10、跳转到员工信息界面
+# ========================
+def ToEmployeeManage(request):
+    return render(request, 'admin/employeeManage.html', {})

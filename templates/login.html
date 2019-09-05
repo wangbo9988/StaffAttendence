@@ -107,7 +107,7 @@
                                                 <div class="row-fluid">
                                                     <div class="span12">
                                                         <input class="span12 password" name="password"
-                                                               placeholder="请输入密码" required="required" type="password">
+                                                               placeholder="请输入密码" required="required" type="password" id="pwd">
                                                     </div>
                                                 </div>
                                             </div>
@@ -203,6 +203,15 @@
         })
 
     };
+
+    // 回车函数
+    $('#pwd').bind('keypress', function (event) {
+        if (event.keyCode == "13") {
+            event.preventDefault();
+            login();
+        }
+    });
+
 </script>
 </body>
 </html>
