@@ -50,27 +50,25 @@ def Register(request):
     data = {'status': 0}
     if request.method == 'POST':
         receive_data = json.loads(request.body)
+        print(receive_data)
         if receive_data['username'] and receive_data['password']:
             isExit = models.UserInfor.objects.filter(userName=receive_data['username'])
             if isExit:
-                pass
+                data['status'] = 3
             else:
                 new_user = models.UserInfor(
                     userId=uuid.uuid1(),
                     userName=receive_data['username'],
                     password=make_password(receive_data['password']),
-                    position='普通员工',
-                    email=receive_data['email'],
-                    name=receive_data['name'],
-                    sex=receive_data['sex'],
-                    tellPhone=receive_data['tellPhone'],
-                    department=receive_data['department']
+                    sex=receive_data['sex']
                 )
+                new_user.save()
                 try:
                     new_user.save()
+
                     data['status'] = 1
                 except:
-                    pass
+                    data['status'] = 2
     return HttpResponse(json.dumps(data), content_type='application/json')
 
 
@@ -114,9 +112,9 @@ def PunchIn(request):
         userId = request.session.get('userInfor')['userId']
 
         isLeave = models.LeaveInfor.objects.raw(
-            "SELECT * FROM app_leaveinfor WHERE userId='{0}' AND isApply=1 AND startTime BETWEEN '{1}' AND '{2}'".format(
-                userId,
-                begin, end))
+            "SELECT * FROM app_leaveinfor WHERE userId='{0}' AND '{1}' BETWEEN startTime AND endTime".format(
+                userId, begin))
+        print(len(isLeave))
         if len(isLeave) == 0:
             sql = 'SELECT * FROM app_attendenceinfor WHERE userId="{0}" AND startTime BETWEEN "{1}" AND "{2}"'.format(
                 userId, begin, end)
@@ -129,7 +127,6 @@ def PunchIn(request):
             try:
                 if temp:
                     if temp[4]:
-                        print('====')
                         data['status'] = '已打卡，无需重复打卡'
                     else:
                         models.AttendenceInfor.objects.update(endTime=nowTime)
@@ -149,7 +146,6 @@ def PunchIn(request):
         else:
             data['status'] = '休假状态，无需打卡'
 
-    print(data)
     return HttpResponse(json.dumps(data), content_type='application/json')
 
 
@@ -170,6 +166,7 @@ def ChangeUserInfor(request):
                 position=receive_data['position'],
                 email=receive_data['email']
             )
+            request.session['userInfor'] = models.UserInfor.objects.get(userId=userId)
             data['status'] = '1'
         except:
             data['status'] = '0'
@@ -184,21 +181,27 @@ def ApplyLeave(request):
     if request.method == 'POST':
         receive_data = json.loads(request.body)
         if (receive_data and receive_data['startDate'] and receive_data['endDate']):
-            print(receive_data)
             userInfor = request.session.get('userInfor')
-            new_data = models.LeaveInfor(
-                userId=userInfor['userId'],
-                name=userInfor['name'],
-                type=receive_data['type'],
-                startTime=receive_data['startDate'][0:10],
-                endTime=receive_data['endDate'][0:10],
-                remark=receive_data['reason']
-            )
-            try:
-                new_data.save()
-                data['status'] = 1
-            except:
-                data['status'] = 0
+            print(userInfor)
+            isHave = models.LeaveInfor.objects.filter(userId=userInfor['userId'], isApply='待审核')
+            if isHave:
+                data['status'] = "3"
+            else:
+                print(receive_data)
+                new_data = models.LeaveInfor(
+                    userId=userInfor['userId'],
+                    name=userInfor['name'],
+                    type=receive_data['type'],
+                    startTime=receive_data['startDate'][0:10],
+                    endTime=receive_data['endDate'][0:10],
+                    remark=receive_data['reason']
+                )
+                try:
+                    new_data.save()
+                    data['status'] = '1'
+                except:
+                    data['status'] = '0'
         else:
-            data['status'] = '请填写完整数据'
+            data['status'] = '0'
+    print(data)
     return HttpResponse(json.dumps(data), content_type='application/json')

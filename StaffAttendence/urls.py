@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app import views, views2
+from app import views, views2, views3
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,7 +31,6 @@ urlpatterns = [
     path('toEmployeeManage/', views2.ToEmployeeManage),  # 跳转到员工信息界面
     path('toDepartment/', views2.ToDepartment),  # 跳转到部门管理界面
     path('toLeaveRecord/', views2.ToLeaveRecord),  # 跳转到请假管理界面
-
     path('login/', views.Login),  # 用户登录
     path('LoginOut/', views.LoginOut),  # 用户登出
     path('Register/', views.Register),  # 用户注册
@@ -39,4 +38,8 @@ urlpatterns = [
     path('punchIns/', views.PunchIn),  # 员工打卡
     path('changeUserInfor/', views.ChangeUserInfor),  # 修改用户信息
     path('applyLeave/', views.ApplyLeave),  # 申请休假
+    path('getLeaveRecord/', views3.GetLeaveRecord),  # 请假记录
+    path('submitRecord/', views3.SubmitRecord),  # 提交请假审核结果
+    path('getEmployInfor/', views3.GetEmployInfor),  # 提交请假审核结果
+    path('submitEmployInfor/', views3.SubmitEmployInfor),  # 提交请假审核结果
 ]

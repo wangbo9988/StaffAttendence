@@ -114,18 +114,11 @@
                         请假记录
                     </a>
                 </li>
-                <li>
-                    <a href="leaveType.html">
-                        请假类别管理
-                    </a>
-                </li>
             </ul>
         </div>
         <div class="dashboard-wrapper">
             <div class="left-sidebar">
-
                 <div class="row-fluid">
-
                     <div class="span12">
                         <!-- 部门信息 -->
                         <div class="widget">
@@ -147,13 +140,10 @@
                                             <thead>
                                             <tr role="row">
                                                 <th>
-                                                    记录编号
+                                                    员工编号
                                                 </th>
                                                 <th>
                                                     员工姓名
-                                                </th>
-                                                <th>
-                                                    员工编号
                                                 </th>
                                                 <th>
                                                     请假类型
@@ -168,10 +158,11 @@
                                                     审核情况
                                                 </th>
                                                 <th>
-                                                    操作
+                                                    记录编号
                                                 </th>
-                                                <th style="display: none">
-                                                    原因
+
+                                                <th>
+                                                    操作
                                                 </th>
                                             </tr>
                                             </thead>
@@ -209,13 +200,12 @@
             <div class="modal-body">
                 <div class="tab-content" id="">
                     <div class="tab-pane fade active in">
-
                         <div class="control-group">
-                            <label class="control-label" for="name">
-                                记录编号
+                            <label class="control-label" for="id">
+                                员工编号
                             </label>
                             <div class="controls">
-                                <input type="text" id="id" placeholder="请输入记录编号" name="id">
+                                <input type="text" id="id" placeholder="请输入员工姓名" name="id" readonly>
                                 <span style="color: red;" id="span_id"></span>
                             </div>
                         </div>
@@ -224,7 +214,7 @@
                                 员工姓名
                             </label>
                             <div class="controls">
-                                <input type="text" id="name" placeholder="请输入员工姓名" name="name">
+                                <input type="text" id="name" placeholder="请输入员工姓名" name="name" readonly>
                                 <span style="color: red;" id="span_name"></span>
                             </div>
                         </div>
@@ -233,7 +223,7 @@
                                 员工编号
                             </label>
                             <div class="controls">
-                                <input type="text" id="user_id" placeholder="请输入员工编号" name="user_id">
+                                <input type="text" id="user_id" placeholder="请输入员工编号" name="user_id" readonly>
                                 <span style="color: red;" id="span_user_id"></span>
                             </div>
                         </div>
@@ -242,7 +232,7 @@
                                 请假类型
                             </label>
                             <div class="controls">
-                                <select name="type" id="leave_type" name="leave_type">
+                                <select name="type" id="leave_type" name="leave_type" readonly="true">
                                     <option value="">-- 请选择请假类型 --</option>
                                     <option value="事假">事假</option>
                                     <option value="病假">病假</option>
@@ -256,7 +246,7 @@
                                 开始时间
                             </label>
                             <div class="controls">
-                                <input type="datetime-local" id="leava_start" name="leava_start">
+                                <input type="date" id="leava_start" name="leava_start">
                                 <span style="color: red;" id="span_leava_start"></span>
                             </div>
                         </div>
@@ -265,7 +255,7 @@
                                 结束时间
                             </label>
                             <div class="controls">
-                                <input type="datetime-local" id="leava_stop" name="leava_stop">
+                                <input type="date" id="leava_stop" name="leava_stop">
                                 <span style="color: red;" id="span_leava_stop"></span>
                             </div>
                         </div>
@@ -282,15 +272,6 @@
                                 <span style="color: red;" id="span_status"></span>
                             </div>
                         </div>
-                        <div class="control-group">
-                            <label class="control-label" for="reason">
-                                请假理由
-                            </label>
-                            <div class="controls">
-                                <textarea name="reason" cols="1" rows="2" id="reason" dirname="reason"></textarea>
-                                <span style="color: red;" id="span_reason"></span>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -298,73 +279,13 @@
                 <button class="btn btn-primary" type="button" onclick="edit()">
                     提交
                 </button>
-                <button class="btn" data-dismiss="modal" aria-hidden="true">
+                <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="flush()">
                     关闭
                 </button>
             </div>
         </table>
     </form>
 </div>
-<!-- 修改密码模态框 start -->
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-            ×
-        </button>
-        <h3 id="myModalLabel">
-            <a class="fs1" aria-hidden="true" data-icon="&#xe1c8;"></a>
-            修改密码
-        </h3>
-    </div>
-    <form class="form-horizontal no-margin" id="passwordForm">
-        <table>
-            <div class="modal-body">
-                <div class="tab-content" id="myTabContent">
-                    <div id="step1" class="tab-pane fade active in">
-
-                        <div class="control-group">
-                            <label class="control-label" for="password">
-                                当前密码
-                            </label>
-                            <div class="controls">
-                                <input type="password" id="password" name="currencyPassword" placeholder="请输入当前密码">
-                                <span style="color: red;" id="span_password"></span>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="newPassword_1">
-                                修改密码
-                            </label>
-                            <div class="controls">
-                                <input type="password" id="newPassword_1" name="newPassword" placeholder="请输入要修改的密码">
-                                <span style="color: red;" id="span_newPassword_1"></span>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="newPassword_2">
-                                确认密码
-                            </label>
-                            <div class="controls">
-                                <input type="password" id="newPassword_2" name="confirmPassword"
-                                       placeholder="请确认要修改的密码">
-                                <span style="color: red;" id="span_newPassword_2"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary" type="button" onclick="changePassword()">
-                    提交
-                </button>
-                <button class="btn" data-dismiss="modal" aria-hidden="true">
-                    关闭
-                </button>
-            </div>
-        </table>
-    </form>
-</div>
-<!-- 修改密码模态框 end -->
 <!-- 底部footer start -->
 <footer>
     <p>
@@ -410,7 +331,7 @@
         $.ajax({
             catch: false,
             type: "GET",
-            url: "static/data/leaveRecord.txt",
+            url: "/getLeaveRecord/",
             data: "department_id=1",
             dataType: "json",
             async: false,
@@ -450,7 +371,7 @@
 
     //Alertify JS插件初始化
     reset = function () {
-        $("toggleCSS").href = "css/alertify.core.css";
+        $("toggleCSS").href = "{%  static " css/alertify.core.css"%}";
         alertify.set({
             labels: {
                 cancel: "确认",
@@ -477,25 +398,23 @@
     }
 
     function lick(obj, id) {
+        console.log(obj)
         var td_content = $(obj).parents("tr").children("td");  //获取当前行中的所有td值
-
-        var id = td_content.eq(0).text(); //获取当前行第二个td的值
+        var user_id = td_content.eq(0).text(); //获取当前行第二个td的值
         var name = td_content.eq(1).text(); //获取当前行第二个td的值
-        var user_id = td_content.eq(2).text(); //获取当前行第二个td的值
-        var leave_type = td_content.eq(3).text(); //获取当前行第二个td的值
-        var leava_start = dateFormat(td_content.eq(4).text()); //获取当前行第二个td的值
-        var leava_stop = dateFormat(td_content.eq(5).text()); //获取当前行第二个td的值
-        var status = td_content.eq(6).text(); //获取当前行第二个td的值
-        var reason = td_content.eq(7).text(); //获取当前行第二个td的值
+        var leave_type = td_content.eq(2).text(); //获取当前行第二个td的值
+        var leava_start = dateFormat(td_content.eq(3).text()); //获取当前行第二个td的值
+        var leava_stop = dateFormat(td_content.eq(4).text()); //获取当前行第二个td的值
+        var status = td_content.eq(5).text(); //获取当前行第二个td的值
+        var id = td_content.eq(6).text(); //获取当前行第二个td的值
 
-        document.getElementById('id').value = id;
-        document.getElementById('name').value = name;
         document.getElementById('user_id').value = user_id;
+        document.getElementById('name').value = name;
         document.getElementById('leave_type').value = leave_type;
         document.getElementById('leava_start').value = leava_start;
         document.getElementById('leava_stop').value = leava_stop;
         document.getElementById('status').value = status;
-        document.getElementById('reason').value = reason;
+        document.getElementById('id').value = id;
     }
 
     //清除 span 提示文字
@@ -506,7 +425,7 @@
         document.getElementById('span_leava_start').innerHTML = '';
         document.getElementById('span_leava_stop').innerHTML = '';
         document.getElementById('span_status').innerHTML = '';
-        document.getElementById('span_reason').innerHTML = '';
+        document.getElementById('span_id').innerHTML = '';
     }
     ;
 
@@ -523,7 +442,7 @@
         var leave_type = document.getElementById('leave_type').value;
         var leava_start = document.getElementById('leava_start').value;
         var leava_stop = document.getElementById('leava_stop').value;
-        var reason = document.getElementById('reason').value;
+        var span_status = document.getElementById('span_status').value;
 
         if (name == "") {
             document.getElementById("span_name").innerHTML = '请输入员工姓名';
@@ -540,42 +459,40 @@
         } else if (leava_stop == "") {
             document.getElementById("span_leava_stop").innerHTML = '请输入请假结束时间';
             return false;
-        } else if (reason == "") {
-            document.getElementById("span_reason").innerHTML = '请输入请假理由';
-            return false;
         }
         //获取表单数据
         var leaveFormJson = $('#leaveForm').serializeArray();
         //构造请求参数
         var leaveFormSubmitJson = {
-            id: parseInt(leaveFormJson[0].value),
-            name: leaveFormJson[1].value,
-            user_id: parseInt(leaveFormJson[2].value),
-            leave_type: leaveFormJson[3].value,
+            id: leaveFormJson[0].value,
+            user_id: leaveFormJson[2].value,
             leava_start: leaveFormJson[4].value,
             leava_stop: leaveFormJson[5].value,
-            status: leaveFormJson[6].value,
-            reason: leaveFormJson[7].value
+            status: leaveFormJson[6].value
         };
         $.ajax({
             catch: false,
             type: "POST",
-            url: "/attend/insert",
-            data: leaveFormSubmitJson,
+            url: "/submitRecord/",
+            data: JSON.stringify(leaveFormSubmitJson),
             async: false,
             success: function (data) {
-                if (data == "SUCCESS") {
-                    //打卡成功
-                    message('success', '成功');
-                } else if (data == "fail") {
-                    //打卡失败
-                    message('error', '失败');
+                if (data.status == "1") {
+                    //修改成功
+                    alertify.success('提交成功');
+                } else if (data == "0") {
+                    //修改失败
+                    alertify.error('提交失败');
                 } else {
                     //其他错误信息
-                    message('error', 'data');
+                    alertify.error('服务器错误');
                 }
             }
         })
+    }
+
+    function flush() {
+        window.location.reload()
     }
 </script>
 </body>

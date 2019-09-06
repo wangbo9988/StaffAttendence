@@ -305,12 +305,15 @@
                 if (data.status == "1") {
                     //提交成功
                     alertify.success('提交成功');
-                } else if (data == "0") {
+                } else if (data.status == "0") {
                     //提交失败
                     alertify.error('提交失败');
+                } else if (data.status == "3") {
+                    //其他错误信息
+                    alertify.error('已存在未审核的申请');
                 } else {
                     //其他错误信息
-                    alertify.error(data.status)
+                    alertify.error('服务器错误');
                 }
             }
         })
