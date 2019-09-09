@@ -336,8 +336,7 @@
             department: punchFormJson[3].value,
             position: punchFormJson[4].value,
             email: punchFormJson[5].value
-        };
-        console.log(submitData)
+        }
         var submitJson = JSON.stringify(submitData);
         //构造请求参数
         $.ajax({
@@ -347,6 +346,7 @@
             data: submitJson,
             async: false,
             success: function (data) {
+                console.log(data.status)
                 if (data.status == "1") {
                     //修改成功
                     alertify.success('修改成功');

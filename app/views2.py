@@ -44,7 +44,7 @@ def ToRegister(request):
 def ToIndex(request):
     userInfor = request.session.get('userInfor')
     if userInfor['position'] == '管理员':
-        return render(request, 'admin/attence.html', {})
+        return render(request, 'admin/result.html', {})
     else:
         return render(request, 'staff/punch.html', {})
 
@@ -96,3 +96,9 @@ def ToResult(request):
 # ========================
 def ToEmployeeManage(request):
     return render(request, 'admin/employeeManage.html', {})
+
+# ========================
+# 10、跳转到员工信息界面
+# ========================
+def ToAttencrResult(request):
+    return render(request, 'admin/attenceResult.html', {})

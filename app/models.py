@@ -23,9 +23,9 @@ class ApplyOverTime(models.Model):
     userId = models.CharField(max_length=100)  # 编号
     name = models.CharField(max_length=50)  # 姓名
     type = models.CharField(max_length=20)  # 加班类型
-    startTime = models.CharField(max_length=50, default=None)  # 起始时间
-    endTime = models.CharField(max_length=50, default=None)  # 结束时间
-    isApply = models.BooleanField(default=False)  # 是否同意
+    startTime = models.CharField(max_length=50, null=True)  # 起始时间
+    endTime = models.CharField(max_length=50, null=True)  # 结束时间
+    isApply = models.BooleanField(default=False, null=True)  # 是否同意
 
 
 # 请假记录表
@@ -34,8 +34,8 @@ class LeaveInfor(models.Model):
     userId = models.CharField(max_length=100)  # 编号
     name = models.CharField(max_length=50)  # 姓名
     type = models.CharField(max_length=20)  # 请假类型
-    startTime = models.CharField(max_length=50, default=None)  # 起始时间
-    endTime = models.CharField(max_length=50, default=None)  # 结束时间
+    startTime = models.CharField(max_length=50, null=True)  # 起始时间
+    endTime = models.CharField(max_length=50, null=True)  # 结束时间
     remark = models.CharField(max_length=255, null=True)  # 备注
     isApply = models.CharField(default='待审核', max_length=50)  # 是否同意
 
@@ -45,7 +45,5 @@ class AttendenceInfor(models.Model):
     id = models.AutoField(primary_key=True, auto_created=True)  # 记录编号
     userId = models.CharField(max_length=100)  # 编号
     name = models.CharField(max_length=50)  # 姓名
-    startTime = models.CharField(max_length=50, default=None)  # 起始时间
-    endTime = models.CharField(max_length=50, default=None)  # 结束时间
-
-
+    startTime = models.CharField(max_length=50, null=True)  # 起始时间
+    endTime = models.CharField(max_length=50, null=True)  # 结束时间

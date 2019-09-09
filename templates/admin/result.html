@@ -79,27 +79,21 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/toDepartment/">
-                        <div class="fs1" aria-hidden="true" data-icon="&#xe0a9;"></div>
-                        部门信息
-                    </a>
-                </li>
-                <li>
                     <a href="/toLeaveRecord/">
                         <div class="fs1" aria-hidden="true" data-icon="&#xe0e4;"></div>
                         请假管理
                     </a>
                 </li>
                 <li>
-                    <a href="/toAttence/">
-                        <div class="fs1" aria-hidden="true" data-icon="&#xe096;"></div>
-                        考勤结果
-                    </a>
-                </li>
-                <li>
                     <a href="/toResult/" class="selected">
                         <div class="fs1" aria-hidden="true" data-icon="&#xe0b8;"></div>
-                        考勤管理
+                        考勤信息
+                    </a>
+                </li>
+                </li><li>
+                    <a href="/toAttencrResult/">
+                        <div class="fs1" aria-hidden="true" data-icon="&#xe074;"></div>
+                        考勤记录
                     </a>
                 </li>
             </ul>
@@ -129,66 +123,6 @@
                     </span>
                             </div>
                             <div class="widget-body">
-                                <div class="monthBox">
-                                    <div style="display: inline-block">
-                                        起始查询：
-                                        <select name="year" id="startYear">
-                                            <option value="2019">2019年</option>
-                                            <option value="2018">2018年</option>
-                                            <option value="2017">2017年</option>
-                                            <option value="2016">2016年</option>
-                                        </select>
-                                    </div>
-                                    &nbsp;
-                                    <div style="display: inline-block">
-                                        <select name="month" id="startMonth">
-                                            <option value="01" selected="selected">1月</option>
-                                            <option value="02">2月</option>
-                                            <option value="03">3月</option>
-                                            <option value="04">4月</option>
-                                            <option value="05">5月</option>
-                                            <option value="06">6月</option>
-                                            <option value="07">7月</option>
-                                            <option value="08">8月</option>
-                                            <option value="09">9月</option>
-                                            <option value="10">10月</option>
-                                            <option value="11">11月</option>
-                                            <option value="12">12月</option>
-                                        </select>
-                                    </div>
-                                    &nbsp;
-                                    <div style="display: inline-block">
-                                        结束查询：
-                                        <select name="year" id="endYear">
-                                            <option value="2019">2019年</option>
-                                            <option value="2018">2018年</option>
-                                            <option value="2017">2017年</option>
-                                            <option value="2016">2016年</option>
-                                        </select>
-                                    </div>
-                                    &nbsp;
-                                    <div style="display: inline-block">
-                                        <select name="month" id="endMonth">
-                                            <option value="01">1月</option>
-                                            <option value="02">2月</option>
-                                            <option value="03" selected="selected">3月</option>
-                                            <option value="04">4月</option>
-                                            <option value="05">5月</option>
-                                            <option value="06">6月</option>
-                                            <option value="07">7月</option>
-                                            <option value="08">8月</option>
-                                            <option value="09">9月</option>
-                                            <option value="10">10月</option>
-                                            <option value="11">11月</option>
-                                            <option value="12" selected="selected">12月</option>
-                                        </select>
-                                    </div>
-                                    <div style="display: inline-block">
-                                        <button type="button" style="margin-bottom: 10px" class="btn btn-success"
-                                                onclick="searchByMonth()">确定
-                                        </button>
-                                    </div>
-                                </div>
                                 <div id="dt_example" class="example_alt_pagination">
                                     <div id="data-table_wrapper" class="dataTables_wrapper" role="grid">
                                         <!-- 排班管理列表 -->
@@ -198,19 +132,13 @@
                                             <thead>
                                             <tr role="row">
                                                 <th>
-                                                    考勤结果编号
+                                                    员工工号
                                                 </th>
                                                 <th>
-                                                    工号
+                                                    员工姓名
                                                 </th>
                                                 <th>
-                                                    姓名
-                                                </th>
-                                                <th>
-                                                    应出勤天数
-                                                </th>
-                                                <th>
-                                                    实出勤天数
+                                                    出勤天数
                                                 </th>
                                                 <th>
                                                     事假
@@ -229,15 +157,6 @@
                                                 </th>
                                                 <th>
                                                     丧假
-                                                </th>
-                                                <th>
-                                                    矿工
-                                                </th>
-                                                <th>
-                                                    迟到(分钟)
-                                                </th>
-                                                <th>
-                                                    加班(小时)
                                                 </th>
                                             </tr>
                                             </thead>
@@ -278,7 +197,7 @@
 
                         <div class="control-group">
                             <label class="control-label" for="name">
-                                考勤结果编号
+                                员工工号
                             </label>
                             <div class="controls">
                                 <input type="text" id="id" placeholder="请输入考勤结果编号" name="id">
@@ -307,10 +226,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary" type="button" onclick="edit()">
-                    提交
-                </button>
-                <button class="btn" data-dismiss="modal" aria-hidden="true">
+                <button class="btn-primary" data-dismiss="modal" aria-hidden="true">
                     关闭
                 </button>
             </div>
@@ -422,8 +338,8 @@
         $.ajax({
             catch: false,
             type: "GET",
-            url: "static/data/result.txt",
-            data: "department_id=1",
+            url: "/getResult/",
+            data: '',
             dataType: "json",
             async: false,
             error: function (request) {
@@ -438,8 +354,6 @@
                         html += data[i][attr];
                         html += "</td>";
                     }
-                    html += "<td><button class=\"btn btn-primary\" href=\"#edit\" data-toggle=\"modal\" onclick=\"lick(this, this.id)\">编辑 </button>";
-                    html += "<button class=\"btn btn-danger\" onclick=\"del(thi)\">删除</button> </td>";
                     html += "</tr>";
                 }
                 //将拼接完成的table传入表格元素节点内
@@ -457,29 +371,25 @@
         var endMonth = $('#endMonth').val();
         var endDate = new Date(endYear + '-' + endMonth);  //结束查询时间Date格式
 
-        var querySubmitJson = {
+        var date = {
             startDate: startDate,
             endDate: endDate
         };
-        console.log(querySubmitJson);
+        console.log(date);
         $.ajax({
             catch: false,
             type: "POST",
-            url: "/attend/insert",
-            data: querySubmitJson,
+            url: "/getResult_ByDate/",
+            data: JSON.stringify(date),
+            dataType: "json",
             async: false,
+            error: function (request) {
+                console.log(request.error);
+            },
             success: function (data) {
-                if (data == "SUCCESS") {
-                    //删除成功
-                    message('success', '成功');
-                } else if (data == "fail") {
-                    //删除失败
-                    message('error', '失败');
-                } else {
-                    //其他错误信息
-                    message('error', 'data');
-                }
+                alertify.success('sdafsd')
             }
+
         })
     };
 
@@ -557,46 +467,6 @@
         resetEdit();
     })
 
-    //编辑部门信息表单验证
-    function edit() {
-        resetEdit();
-        var name = document.getElementById('name').value;
-        var minutes = document.getElementById('minutes').value;
-        if (name == "") {
-            document.getElementById("span_name").innerHTML = '请输入考勤结果';
-            return false;
-        } else if (minutes == "") {
-            document.getElementById("span_minutes").innerHTML = '请输入迟到分钟数';
-            return false;
-        }
-        //获取表单数据
-        var resultFormJson = $('#resultForm').serializeArray();
-        //构造请求参数
-        var resultSubmitJson = {
-            id: parseInt(resultFormJson[0].value),
-            name: resultFormJson[1].value,
-            minutes: parseInt(resultFormJson[2].value)
-        };
-        $.ajax({
-            catch: false,
-            type: "POST",
-            url: "/attend/insert",
-            data: resultSubmitJson,
-            async: false,
-            success: function (data) {
-                if (data == "SUCCESS") {
-                    //打卡成功
-                    message('success', '成功');
-                } else if (data == "fail") {
-                    //打卡失败
-                    message('error', '失败');
-                } else {
-                    //其他错误信息
-                    message('error', 'data');
-                }
-            }
-        })
-    }
 </script>
 </body>
 </html>

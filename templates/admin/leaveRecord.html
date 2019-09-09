@@ -79,27 +79,22 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/toDepartment/">
-                        <div class="fs1" aria-hidden="true" data-icon="&#xe0a9;"></div>
-                        部门信息
-                    </a>
-                </li>
-                <li>
                     <a href="/toLeaveRecord/" class="selected">
                         <div class="fs1" aria-hidden="true" data-icon="&#xe0e4;"></div>
                         请假管理
                     </a>
                 </li>
                 <li>
-                    <a href="/toAttence/">
-                        <div class="fs1" aria-hidden="true" data-icon="&#xe096;"></div>
-                        考勤结果
-                    </a>
-                </li>
-                <li>
                     <a href="/toResult/">
                         <div class="fs1" aria-hidden="true" data-icon="&#xe0b8;"></div>
-                        考勤管理
+                        考勤信息
+                    </a>
+                </li>
+                </li>
+                <li>
+                    <a href="/toAttencrResult/">
+                        <div class="fs1" aria-hidden="true" data-icon="&#xe074;"></div>
+                        考勤记录
                     </a>
                 </li>
             </ul>
@@ -398,7 +393,6 @@
     }
 
     function lick(obj, id) {
-        console.log(obj)
         var td_content = $(obj).parents("tr").children("td");  //获取当前行中的所有td值
         var user_id = td_content.eq(0).text(); //获取当前行第二个td的值
         var name = td_content.eq(1).text(); //获取当前行第二个td的值

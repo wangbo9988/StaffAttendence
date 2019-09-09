@@ -112,9 +112,8 @@ def PunchIn(request):
         userId = request.session.get('userInfor')['userId']
 
         isLeave = models.LeaveInfor.objects.raw(
-            "SELECT * FROM app_leaveinfor WHERE userId='{0}' AND '{1}' BETWEEN startTime AND endTime".format(
+            "SELECT * FROM app_leaveinfor WHERE userId='{0}' AND isApply='通过' AND '{1}' BETWEEN startTime AND endTime".format(
                 userId, begin))
-        print(len(isLeave))
         if len(isLeave) == 0:
             sql = 'SELECT * FROM app_attendenceinfor WHERE userId="{0}" AND startTime BETWEEN "{1}" AND "{2}"'.format(
                 userId, begin, end)
@@ -153,7 +152,7 @@ def PunchIn(request):
 # 6、修改员工信息
 # ========================
 def ChangeUserInfor(request):
-    data = {'status': '服务器错误'}
+    data = {'status': '2'}
     if request.method == 'POST':
         receive_data = json.loads(request.body)
         userId = request.session.get('userInfor')['userId']

@@ -27,6 +27,7 @@ urlpatterns = [
     path('toAttence/', views2.ToAttence),  # 跳转到勤管理界面
     path('toDepartment/', views2.ToDepartment),  # 跳转到部门管理界面
     path('toLeaveRecord/', views2.ToLeaveRecord),  # 跳转到请假记录界面
+    path('toAttencrResult/', views2.ToAttencrResult),  # 跳转到考勤记录界面
     path('toResult/', views2.ToResult),  # 跳转到考勤结果界面
     path('toEmployeeManage/', views2.ToEmployeeManage),  # 跳转到员工信息界面
     path('toDepartment/', views2.ToDepartment),  # 跳转到部门管理界面
@@ -42,4 +43,7 @@ urlpatterns = [
     path('submitRecord/', views3.SubmitRecord),  # 提交请假审核结果
     path('getEmployInfor/', views3.GetEmployInfor),  # 提交请假审核结果
     path('submitEmployInfor/', views3.SubmitEmployInfor),  # 提交请假审核结果
+    path('getResult/', views3.GetResult),  # 获取考核结果
+    path('getAttenceResult/', views3.GetAttenceResult),  # 获取考核记录
+    path('getLeaveResult/', views3.GetLeaveResult),  # 获取请假记录
 ]
